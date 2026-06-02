@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liv Bialek — Marketing & Communications</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F5F0E8;
+      --warm-white: #FAF8F4;
+      --charcoal: #1C1C1A;
+      --warm-gray: #6B6560;
+      --accent: #C4956A;
+      --accent-light: #E8D5C0;
+      --border: rgba(28,28,26,0.1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--warm-white);
+      color: var(--charcoal);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2.5rem;
+      background: rgba(250,248,244,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--charcoal);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--charcoal); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 5rem;
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 3rem 5rem 5rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.9s ease forwards 0.2s;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-bio {
+      font-size: 1rem;
+      color: var(--warm-gray);
+      max-width: 420px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      background: var(--charcoal);
+      color: var(--warm-white);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      border: 1px solid var(--charcoal);
+      color: var(--charcoal);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .btn-secondary:hover { background: var(--charcoal); color: var(--warm-white); transform: translateY(-2px); }
+
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+      background: var(--accent-light);
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 0.5s;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .hero-image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: var(--warm-gray);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .placeholder-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(196,149,106,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 5rem; }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .stat {
+      border-top: 1px solid var(--border);
+      padding-top: 1.25rem;
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--warm-gray);
+      margin-top: 0.25rem;
+      letter-spacing: 0.05em;
+    }
+
+    .about-right p {
+      font-size: 1rem;
+      color: var(--warm-gray);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--warm-white); }
+
+    .experience-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2.5rem;
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .exp-item.visible { opacity: 1; transform: translateY(0); }
+
+    .exp-meta {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .exp-date {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-company {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .exp-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .exp-desc {
+      font-size: 0.9rem;
+      color: var(--warm-gray);
+      line-height: 1.75;
+    }
+
+    .exp-desc ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .exp-desc li::before {
+      content: "— ";
+      color: var(--accent);
+    }
+
+    /* ── VENTURES ── */
+    #ventures { background: var(--charcoal); color: var(--warm-white); }
+
+    #ventures .section-title { color: var(--warm-white); }
+
+    .ventures-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 0;
+    }
+
+    .venture-card {
+      background: rgba(255,255,255,0.04);
+      padding: 3rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: background 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease, background 0.3s;
+    }
+
+    .venture-card:hover { background: rgba(255,255,255,0.08); }
+    .venture-card.visible { opacity: 1; transform: translateY(0); }
+
+    .venture-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.25rem 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .venture-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .venture-desc {
+      font-size: 0.9rem;
+      color: rgba(250,248,244,0.6);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .venture-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .venture-highlight {
+      font-size: 0.8rem;
+      color: rgba(250,248,244,0.5);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .venture-highlight::before {
+      content: "";
+      width: 16px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--cream); }
+
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+
+    .skill-group { margin-bottom: 2.5rem; }
+
+    .skill-group-title {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .pill {
+      font-size: 0.8rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--border);
+      color: var(--charcoal);
+      background: var(--warm-white);
+      letter-spacing: 0.03em;
+    }
+
+    .skills-right p {
+      font-size: 0.95rem;
+      color: var(--warm-gray);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--warm-white);
+      text-align: center;
+      padding: 8rem 5rem;
+    }
+
+    #contact .section-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 1rem;
+    }
+
+    .contact-sub {
+      font-size: 1rem;
+      color: var(--warm-gray);
+      max-width: 480px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--warm-gray);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.25rem; }
+      .nav-links a { font-size: 0.72rem; }
+
+      .hero { grid-template-columns: 1fr; }
+      .hero-text { padding: 7rem 1.75rem 3rem; }
+      .hero-image { height: 55vw; min-height: 280px; }
+
+      section { padding: 4rem 1.75rem; }
+
+      #about { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+
+      .exp-item { grid-template-columns: 1fr; gap: 0.75rem; }
+
+      .ventures-grid { grid-template-columns: 1fr; }
+      .venture-card { padding: 2rem; }
+
+      .skills-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      #contact { padding: 5rem 1.75rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-name { font-size: 2.75rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Liv Bialek</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#ventures">Ventures</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Marketing · Communications · Entrepreneurship</p>
+      <h1 class="hero-name">Liv<br/><em>Bialek</em></h1>
+      <p class="hero-bio">
+        Communications student at Tulane University with a passion for brand storytelling, digital strategy, and building things from scratch. Founder of two ventures before 21.
+      </p>
+      <div class="hero-cta">
+        <a href="#experience" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <!-- Replace the div below with: <img src="your-photo.jpg" alt="Liv Bialek" /> -->
+      <div class="hero-image-placeholder">
+        <div class="placeholder-icon">📸</div>
+        <p>Replace with your photo<br/><span style="font-size:0.7rem;opacity:0.6">(see instructions below)</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div>
+      <p class="section-label">About Me</p>
+      <h2 class="section-title">Brand builder.<br/>Story<em style="font-family:'Cormorant Garamond',serif;font-style:italic">teller.</em><br/>Entrepreneur.</h2>
+      <div class="about-stats">
+        <div class="stat">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Ventures Founded</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">$50K</div>
+          <div class="stat-label">Pitch Competition</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">2028</div>
+          <div class="stat-label">Tulane Graduation</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">4+</div>
+          <div class="stat-label">Internships & Roles</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-right">
+      <p>
+        I'm a Communications major with a Sport &amp; Leisure Administration minor at Tulane University (Class of 2028). My academic and professional work sits at the intersection of marketing, media, and entrepreneurship.
+      </p>
+      <p>
+        I founded my first clothing line, LIVincomfort, in 2020 — it was picked up by Royal NY boutique. More recently I co-founded Campus Closet, a peer-to-peer college clothing rental and resale platform, which I pitched at Tulane's Startup Lab Demo Day.
+      </p>
+      <p>
+        Outside the classroom I've interned with Tulane Athletics, Nova Network, and Taste &amp; Talk — all focused on marketing strategy, content creation, and social media. I'm also passionate about community leadership through Sigma Delta Tau and Relay for Life.
+      </p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">Experience</p>
+    <h2 class="section-title">Where I've worked<br/>&amp; what I've built.</h2>
+    <div class="experience-grid">
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <span class="exp-date">2024 – Present</span>
+          <span class="exp-company">Nova Network</span>
+        </div>
+        <div>
+          <h3 class="exp-role">Social Media & Marketing Intern</h3>
+          <div class="exp-desc">
+            <ul>
+              <li>Developing social media strategy and content for a media network connected to industry executive Lauren Gellert</li>
+              <li>Creating digital content that drives audience engagement and brand awareness</li>
+              <li>Collaborating on marketing campaigns across multiple platforms</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <span class="exp-date">2024 – Present</span>
+          <span class="exp-company">Taste & Talk</span>
+        </div>
+        <div>
+          <h3 class="exp-role">Marketing Intern</h3>
+          <div class="exp-desc">
+            <ul>
+              <li>Supporting marketing and promotional efforts for events including women's health initiatives</li>
+              <li>Designing promotional materials and brand assets for events like The Pink Pill</li>
+              <li>Coordinating social media presence and event communications</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <span class="exp-date">2023 – 2024</span>
+          <span class="exp-company">Tulane Athletics</span>
+        </div>
+        <div>
+          <h3 class="exp-role">Marketing Intern</h3>
+          <div class="exp-desc">
+            <ul>
+              <li>Supported marketing campaigns and fan engagement initiatives for Tulane University Athletics</li>
+              <li>Created social media content and assisted with event promotion</li>
+              <li>Contributed to brand strategy for athletic programs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <span class="exp-date">Present</span>
+          <span class="exp-company">Tulane University</span>
+        </div>
+        <div>
+          <h3 class="exp-role">President, Relay for Life</h3>
+          <div class="exp-desc">
+            <ul>
+              <li>Led campus-wide fundraising and awareness campaign for the American Cancer Society</li>
+              <li>Managed a team and coordinated all event logistics, marketing, and outreach</li>
+              <li>Drove community engagement and donor relations across campus organizations</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VENTURES -->
+  <section id="ventures">
+    <p class="section-label" style="color:var(--accent)">Ventures</p>
+    <h2 class="section-title">Things I built.</h2>
+    <div class="ventures-grid">
+
+      <div class="venture-card">
+        <span class="venture-tag">Founded 2024</span>
+        <h3 class="venture-name">Campus Closet</h3>
+        <p class="venture-desc">
+          A peer-to-peer clothing rental, resale, and trade platform built for college students. Think Rent the Runway × Depop — without the shipping. Campus-pickup-only, verified with .edu emails.
+        </p>
+        <div class="venture-highlights">
+          <span class="venture-highlight">Co-founded through Tulane Startup Lab</span>
+          <span class="venture-highlight">Pitched at $50K Demo Day competition</span>
+          <span class="venture-highlight">Built React prototype & investor pitch deck</span>
+          <span class="venture-highlight">Full financial model & GTM strategy</span>
+        </div>
+      </div>
+
+      <div class="venture-card">
+        <span class="venture-tag">Founded 2020</span>
+        <h3 class="venture-name">LIVincomfort</h3>
+        <p class="venture-desc">
+          A clothing line I started at 16 centered on comfort-forward, wearable fashion. The brand was picked up by Royal NY boutique — turning a personal passion into a real retail presence.
+        </p>
+        <div class="venture-highlights">
+          <span class="venture-highlight">Carried by Royal NY boutique</span>
+          <span class="venture-highlight">End-to-end brand development &amp; design</span>
+          <span class="venture-highlight">Product creation, marketing &amp; sales</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">Skills & Expertise</p>
+    <h2 class="section-title">What I bring<br/>to the table.</h2>
+    <div class="skills-layout">
+      <div>
+        <div class="skill-group">
+          <p class="skill-group-title">Marketing & Strategy</p>
+          <div class="skill-pills">
+            <span class="pill">Social Media Marketing</span>
+            <span class="pill">Content Strategy</span>
+            <span class="pill">Brand Development</span>
+            <span class="pill">Campaign Management</span>
+            <span class="pill">Event Marketing</span>
+            <span class="pill">Audience Growth</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Communications</p>
+          <div class="skill-pills">
+            <span class="pill">Copywriting</span>
+            <span class="pill">PR & Media Relations</span>
+            <span class="pill">Storytelling</span>
+            <span class="pill">Qualitative Research</span>
+            <span class="pill">Ethnographic Methods</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Tools & Tech</p>
+          <div class="skill-pills">
+            <span class="pill">Canva</span>
+            <span class="pill">Adobe Suite</span>
+            <span class="pill">AI Tools (ChatGPT, Claude)</span>
+            <span class="pill">Google Analytics</span>
+            <span class="pill">Microsoft Office</span>
+          </div>
+        </div>
+      </div>
+      <div class="skills-right">
+        <p>
+          My academic foundation in Communications — with coursework in media studies, feminist theory, and qualitative research — gives me a unique lens on how brands connect with audiences.
+        </p>
+        <p>
+          Through Tulane's Startup Lab entrepreneurship program, I've developed real-world skills in pitching, product development, financial modeling, and go-to-market strategy.
+        </p>
+        <p>
+          I'm AI-literate and certified, and I believe integrating AI into creative and marketing workflows is a core professional skill — not a shortcut, but a multiplier.
+        </p>
+        <div style="margin-top:2rem;">
+          <p class="skill-group-title" style="font-size:0.72rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);">Education</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:0.25rem;">Tulane University</p>
+          <p style="font-size:0.85rem;color:var(--warm-gray);">B.A. Communications, Minor in Sport & Leisure Administration<br/>Expected May 2028</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Let's work together.</h2>
+    <p class="contact-sub">
+      I'm always open to internship opportunities, creative collaborations, and conversations about marketing, media, and entrepreneurship.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:your@email.com" class="btn-primary">Email Me</a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn-secondary">LinkedIn</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2025 Liv Bialek</span>
+    <span>Tulane University · Communications '28</span>
+  </footer>
+
+  <script>
+    // Scroll-triggered fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.exp-item, .venture-card').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
